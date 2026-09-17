@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khimia Solutions · Catálogo de Servicios</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #2D5A3D;
+    --verde-claro: #4A8C5C;
+    --verde-palido: #E8F0EA;
+    --tierra: #8B6F47;
+    --tierra-claro: #F5EFE6;
+    --blanco: #FAFAF8;
+    --gris: #6B7280;
+    --negro: #1A1F1A;
+    --acento: #7CAE8A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--blanco);
+    color: var(--negro);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,250,248,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(45,90,61,0.12);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--verde);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo span {
+    font-weight: 400;
+    color: var(--tierra);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--gris);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--verde); }
+
+  /* HERO */
+  .hero {
+    padding: 120px 2rem 80px;
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    min-height: 90vh;
+  }
+
+  .hero-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--negro);
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-text h1 em {
+    font-style: italic;
+    color: var(--verde);
+  }
+
+  .hero-text p {
+    font-size: 1.05rem;
+    color: var(--gris);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    max-width: 380px;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .tag {
+    background: var(--verde-palido);
+    color: var(--verde);
+    padding: 0.3rem 0.9rem;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .btn-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--verde);
+    color: white;
+    padding: 0.85rem 1.8rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-wa:hover { background: var(--verde-claro); transform: translateY(-1px); }
+
+  .hero-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: white;
+    border: 1px solid rgba(45,90,61,0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 20px rgba(45,90,61,0.06);
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .stat-card:nth-child(2) { animation-delay: 0.15s; margin-left: 2rem; }
+  .stat-card:nth-child(3) { animation-delay: 0.3s; }
+
+  .stat-card .icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--negro);
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-card p {
+    font-size: 0.82rem;
+    color: var(--gris);
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 80px 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tierra);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--negro);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-intro {
+    color: var(--gris);
+    font-size: 1rem;
+    max-width: 560px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid rgba(45,90,61,0.1);
+    margin: 0;
+  }
+
+  /* SERVICIOS */
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .servicio-card {
+    background: white;
+    border: 1px solid rgba(45,90,61,0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: default;
+  }
+
+  .servicio-card:hover {
+    box-shadow: 0 8px 32px rgba(45,90,61,0.1);
+    transform: translateY(-2px);
+  }
+
+  .servicio-card .s-icon {
+    width: 44px; height: 44px;
+    background: var(--verde-palido);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .servicio-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--negro);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .servicio-card p {
+    font-size: 0.88rem;
+    color: var(--gris);
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+  }
+
+  .servicio-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .servicio-items li {
+    font-size: 0.82rem;
+    color: var(--verde);
+    font-weight: 500;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .servicio-items li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--acento);
+  }
+
+  /* CASOS */
+  .casos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .caso-card {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    background: white;
+    border: 1px solid rgba(45,90,61,0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: box-shadow 0.2s;
+  }
+
+  .caso-card:hover { box-shadow: 0 8px 32px rgba(45,90,61,0.08); }
+
+  .caso-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--verde-palido);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .caso-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--negro);
+    margin-bottom: 0.5rem;
+  }
+
+  .caso-content p {
+    font-size: 0.88rem;
+    color: var(--gris);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .caso-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .caso-tag {
+    background: var(--tierra-claro);
+    color: var(--tierra);
+    padding: 0.2rem 0.7rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  /* METODOLOGIA */
+  .metodo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .metodo-card {
+    background: var(--verde);
+    border-radius: 16px;
+    padding: 2.5rem;
+    color: white;
+  }
+
+  .metodo-card.light {
+    background: var(--verde-palido);
+    color: var(--negro);
+  }
+
+  .metodo-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .metodo-card p {
+    font-size: 0.88rem;
+    opacity: 0.85;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+
+  .metodo-card.light p { opacity: 1; color: var(--gris); }
+
+  .metodo-steps {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .metodo-steps li {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .metodo-steps li::before {
+    content: '↗';
+    position: absolute;
+    left: 0;
+    font-size: 0.75rem;
+  }
+
+  .metodo-card.light .metodo-steps li { color: var(--verde); opacity: 1; }
+
+  /* CONTACTO */
+  .contacto-box {
+    background: var(--negro);
+    border-radius: 24px;
+    padding: 4rem;
+    text-align: center;
+    color: white;
+  }
+
+  .contacto-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .contacto-box h2 em {
+    color: var(--acento);
+    font-style: italic;
+  }
+
+  .contacto-box p {
+    color: rgba(255,255,255,0.6);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .contacto-info {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .contacto-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .contacto-item strong { color: white; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    color: var(--gris);
+    border-top: 1px solid rgba(45,90,61,0.1);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .hero { grid-template-columns: 1fr; gap: 2rem; min-height: auto; padding-top: 100px; }
+    .hero-visual { display: none; }
+    .servicios-grid { grid-template-columns: 1fr; }
+    .metodo-grid { grid-template-columns: 1fr; }
+    .caso-card { grid-template-columns: 1fr; }
+    .caso-num { font-size: 1.5rem; }
+    .nav-links { display: none; }
+    .contacto-box { padding: 2.5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#inicio" class="nav-logo">Khimia <span>Solutions</span></a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#casos">Casos</a></li>
+    <li><a href="#metodologia">Metodología</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="inicio" class="hero">
+  <div class="hero-text">
+    <h1>Consultoría en <em>gestión ambiental</em> y territorio</h1>
+    <p>Soporte técnico especializado para proyectos públicos y privados en Ecuador y Latinoamérica, integrando análisis ambiental, SIG y planificación sostenible.</p>
+    <div class="hero-tags">
+      <span class="tag">📍 Ecuador · Remoto</span>
+      <span class="tag">Gestión Ambiental</span>
+      <span class="tag">SIG</span>
+      <span class="tag">Sostenibilidad</span>
+    </div>
+    <a href="https://wa.me/593981374409" class="btn-wa" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Consultar por WhatsApp
+    </a>
+  </div>
+  <div class="hero-visual">
+    <div class="stat-card">
+      <div class="icon">🌿</div>
+      <h3>Gestión Ambiental</h3>
+      <p>Diagnósticos, planes de manejo e informes de cumplimiento normativo</p>
+    </div>
+    <div class="stat-card">
+      <div class="icon">🗺️</div>
+      <h3>SIG y Territorio</h3>
+      <p>Análisis espacial y cartografía con QGIS, ArcGIS y Google Earth Engine</p>
+    </div>
+    <div class="stat-card">
+      <div class="icon">📊</div>
+      <h3>Sostenibilidad</h3>
+      <p>Huella de carbono, reportes GRI/ESG y políticas climáticas institucionales</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <p class="section-label fade-in">Líneas de servicio</p>
+  <h2 class="section-title fade-in">¿En qué podemos ayudarte?</h2>
+  <p class="section-intro fade-in">Cuatro áreas de trabajo especializadas, adaptadas al contexto territorial, normativo y social de cada proyecto.</p>
+
+  <div class="servicios-grid">
+    <div class="servicio-card fade-in">
+      <div class="s-icon">🌿</div>
+      <h3>Gestión Ambiental Técnica</h3>
+      <p>Acompañamiento para el cumplimiento normativo, planificación y manejo responsable de recursos naturales.</p>
+      <ul class="servicio-items">
+        <li>Plan de Manejo Ambiental (PMA)</li>
+        <li>Informes de Cumplimiento (ICMA)</li>
+        <li>Fichas Ambientales</li>
+        <li>Diagnóstico Ambiental</li>
+        <li>Auditorías de Cumplimiento</li>
+      </ul>
+    </div>
+
+    <div class="servicio-card fade-in">
+      <div class="s-icon">🌍</div>
+      <h3>Gestión Ambiental Estratégica y Sostenibilidad</h3>
+      <p>Integración de la sostenibilidad y el cambio climático en instituciones, empresas y proyectos.</p>
+      <ul class="servicio-items">
+        <li>Reportes de Sostenibilidad GRI / ESG</li>
+        <li>Políticas Ambientales Institucionales</li>
+        <li>Adaptación y Mitigación al Cambio Climático</li>
+        <li>Valoración de Servicios Ecosistémicos</li>
+      </ul>
+    </div>
+
+    <div class="servicio-card fade-in">
+      <div class="s-icon">🗺️</div>
+      <h3>Gestión Territorial y SIG</h3>
+      <p>Análisis espacial, cartografía técnica y soporte geoinformático para proyectos ambientales y territoriales.</p>
+      <ul class="servicio-items">
+        <li>Zonificación Ambiental y Uso de Suelo</li>
+        <li>Cartografía Temática</li>
+        <li>Análisis de Riesgo y Vulnerabilidad</li>
+        <li>Bases de Datos Geoespaciales</li>
+        <li>Soporte SIG para Proyectos Públicos</li>
+      </ul>
+    </div>
+
+    <div class="servicio-card fade-in">
+      <div class="s-icon">🏛️</div>
+      <h3>Soporte a Proyectos Público–Privados</h3>
+      <p>Asistencia técnica especializada en la componente ambiental y territorial de proyectos de inversión e infraestructura.</p>
+      <ul class="servicio-items">
+        <li>Informes de Viabilidad Ambiental</li>
+        <li>Componente Ambiental en Infraestructura</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CASOS -->
+<section id="casos">
+  <p class="section-label fade-in">Casos de referencia</p>
+  <h2 class="section-title fade-in">Trabajo técnico aplicado</h2>
+  <p class="section-intro fade-in">Proyectos desarrollados que ilustran nuestra capacidad de análisis, metodología y entregables.</p>
+
+  <div class="casos-list">
+    <div class="caso-card fade-in">
+      <div class="caso-num">01</div>
+      <div class="caso-content">
+        <h3>Análisis Territorial para Evaluación de Factibilidad Constructiva</h3>
+        <p>Análisis geoespacial multicriterio integrando NDVI, NDWI y pendientes para determinar la aptitud de un territorio para el desarrollo de construcción. El análisis permitió sustentar técnicamente la toma de decisiones sobre uso del suelo con base en evidencia espacial.</p>
+        <div class="caso-tags">
+          <span class="caso-tag">QGIS</span>
+          <span class="caso-tag">Google Earth Engine</span>
+          <span class="caso-tag">NDVI · NDWI</span>
+          <span class="caso-tag">Análisis de pendientes</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="caso-card fade-in">
+      <div class="caso-num">02</div>
+      <div class="caso-content">
+        <h3>Cálculo de Huella de Carbono</h3>
+        <p>Cuantificación de emisiones de gases de efecto invernadero bajo el protocolo GHG y factores de emisión del IPCC. Se identificaron las principales fuentes de emisión por alcance y se formularon recomendaciones para reducción y compensación.</p>
+        <div class="caso-tags">
+          <span class="caso-tag">GHG Protocol</span>
+          <span class="caso-tag">IPCC</span>
+          <span class="caso-tag">CO₂eq</span>
+          <span class="caso-tag">Sostenibilidad climática</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="caso-card fade-in">
+      <div class="caso-num">03</div>
+      <div class="caso-content">
+        <h3>Identificación de Fuentes de Agua Contaminadas con Arsénico</h3>
+        <p>Estructuración y análisis de base de datos de monitoreo de calidad de agua, con filtrado específico por presencia de arsénico. Se identificaron y caracterizaron los puntos críticos con concentraciones que superan los límites permisibles de la OMS.</p>
+        <div class="caso-tags">
+          <span class="caso-tag">Bases de datos ambientales</span>
+          <span class="caso-tag">Calidad del agua</span>
+          <span class="caso-tag">Análisis espacial</span>
+          <span class="caso-tag">OMS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- METODOLOGIA -->
+<section id="metodologia">
+  <p class="section-label fade-in">Cómo trabajamos</p>
+  <h2 class="section-title fade-in">Metodología de trabajo</h2>
+  <p class="section-intro fade-in">Un proceso estructurado pero flexible, que se adapta al contexto de cada proyecto.</p>
+
+  <div class="metodo-grid">
+    <div class="metodo-card fade-in">
+      <h3>01 · Diagnóstico ambiental y territorial</h3>
+      <p>El punto de partida de todo proyecto. Construcción de una imagen técnica clara integrando simultáneamente múltiples fuentes de información.</p>
+      <ul class="metodo-steps">
+        <li>Revisión de información existente</li>
+        <li>Caracterización ambiental y territorial</li>
+        <li>Análisis espacial y cartografía</li>
+        <li>Trabajo de campo cuando corresponde</li>
+        <li>Identificación de problemas y brechas</li>
+      </ul>
+    </div>
+
+    <div class="metodo-card light fade-in">
+      <h3>02 · Planificación y diseño de soluciones</h3>
+      <p>Los hallazgos del diagnóstico se traducen en soluciones técnicas concretas, orientadas a los objetivos del proyecto y adaptadas a la realidad de cada cliente.</p>
+      <ul class="metodo-steps">
+        <li>Definición de objetivos y alcance</li>
+        <li>Diseño de soluciones técnicas</li>
+        <li>Integración de herramientas SIG</li>
+        <li>Estructura del plan de acción</li>
+        <li>Documentación técnica formal</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contacto-box fade-in">
+    <h2>¿Tienes un proyecto <em>en mente</em>?</h2>
+    <p>Escríbenos y conversamos sobre cómo podemos apoyar tu proyecto desde la técnica ambiental y territorial.</p>
+    <div class="contacto-info">
+      <div class="contacto-item">📍 <strong>Ecuador · Latinoamérica · Remoto</strong></div>
+      <div class="contacto-item">🌍 <strong>Gestión ambiental, territorio y sostenibilidad</strong></div>
+    </div>
+    <a href="https://wa.me/593981374409" class="btn-wa" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 4.436 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      +593 98 137 4409
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2025 Khimia Solutions · Consultoría Ambiental y Territorial · Ecuador
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
